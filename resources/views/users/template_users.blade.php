@@ -37,8 +37,8 @@
         <td>{{ $user['name'] }}</td>
         <td>{{ $user['email'] }}</td>
         <td>
-            <a href="{{ route('users.edit', ['id' => $user['id']]) }}" class="btn btn-xs btn-info">EDIT</a>
-            <a href="#" class="btn btn-xs btn-danger">DELETE</a>
+            <a href="{{ route('users.edit', ['id' => $user['id']]) }}" class="btn btn-sm btn-info">EDIT</a>
+            <a href="#" class="btn btn-sm btn-danger">DELETE</a>
         </td>
     </tr>
     @endforeach
