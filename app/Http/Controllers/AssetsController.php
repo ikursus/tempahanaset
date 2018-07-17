@@ -13,7 +13,7 @@ class AssetsController extends Controller
      */
     public function index()
     {
-        //
+        return view('assets/template_index');
     }
 
     /**
@@ -23,7 +23,7 @@ class AssetsController extends Controller
      */
     public function create()
     {
-        //
+        return view('assets/template_tambah');
     }
 
     /**
@@ -34,7 +34,11 @@ class AssetsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'barcode' => 'required'
+        ]);
+
+        return 'Rekod berjaya ditambah!';
     }
 
     /**

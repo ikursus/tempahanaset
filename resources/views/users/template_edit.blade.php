@@ -14,7 +14,7 @@
 <div class="card-body">
 
 <form action="{{ route('users.update', ['id' => $id]) }}" method="POST">
-    
+
 @csrf
 @method('patch')
 

@@ -29,13 +29,24 @@ class UsersController extends Controller
 
     public function store(Request $request)
     {
+        # Kaedah validation 1
+        // $this->validate($request, [
+        //     'name' => 'required'
+        // ]);
+
+        # Kaedah validation 2
+        $request->validate([
+            'name' => 'required|min:3',
+            'email' => 'required|email'
+        ]);
+
         # Dapatkan semua data dari bornag
         # $data = $request->all();
         # Dapatkan nama dan emel sahaja
         # $data = $request->only('name', 'email');
         # Dapatkan SEMUA data KECUALI yang dinyatakan
         $data = $request->except('name', 'email');
-        
+
         return $data;
     }
 
@@ -46,7 +57,12 @@ class UsersController extends Controller
 
     public function update($id)
     {
-        return 'Data telah berjaya dikemaskini';
+        return 'Data telah berjaya dikemaskini.';
+    }
+
+    public function destroy($id)
+    {
+        return 'Data telah berjaya dihapuskan.';
     }
 
 }

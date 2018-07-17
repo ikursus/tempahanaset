@@ -13,6 +13,8 @@
 </div>
 <div class="card-body">
 
+@include('layouts.alerts')
+
 <form action="{{ route('users.store') }}" method="post">
 
 @csrf
@@ -20,11 +22,13 @@
 <div class="form-group">
     <label>NAMA</label>
     <input type="text" name="name" class="form-control">
+    {!! $errors->first('name', '<span style="color:red;">:message</span>') !!}
 </div>
 
 <div class="form-group">
     <label>EMEL</label>
     <input type="email" name="email" class="form-control">
+    {!! $errors->first('email') !!}
 </div>
 
 <div class="form-group">

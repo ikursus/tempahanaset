@@ -28,10 +28,28 @@ Route::group(['prefix' => 'users'], function () {
 
 });
 
+# Berkongsi prefix assets
+Route::group(['prefix' => 'assets'], function () {
 
-Route::get('maklumat/profile/ahmad', function () {
-    return 'ini adalah profile ahmad';
-})->name('profile_ahmad');
+    # Route untuk paparan senarai assets
+    Route::get('/', 'AssetsController@index')->name('assets.index');
+
+    # Route untuk paparan borang tambah assets baru
+    Route::get('/add', 'AssetsController@create')->name('assets.create');
+
+    # Route untuk simpan rekod assets baru
+    Route::post('/add', 'AssetsController@store')->name('assets.store');
+
+    # Route untuk edit assets berdasarkan id
+    Route::get('/{id}/edit', 'AssetsController@edit')->name('assets.edit');
+
+    # Route untuk papar borang kemaskini rekod assets berdasarkan id
+    Route::patch('/{id}/edit', 'AssetsController@update')->name('assets.update');
+
+    # Route untuk papar borang kemaskini rekod assets berdasarkan id
+    Route::delete('/{id}', 'AssetsController@destroy')->name('assets.destroy');
+
+});
 
 
 Auth::routes();
