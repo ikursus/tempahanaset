@@ -8,14 +8,15 @@
 <div class="card card-default">
 <div class="card-header">
     <h1 class="card-title text-center">
-        <strong>Tambah User</strong>
+        <strong>Edit User {{ $id }}</strong>
     </h1>
 </div>
 <div class="card-body">
 
-<form action="{{ route('users.store') }}" method="post">
-
+<form action="{{ route('users.update', ['id' => $id]) }}" method="POST">
+    
 @csrf
+@method('patch')
 
 <div class="form-group">
     <label>NAMA</label>

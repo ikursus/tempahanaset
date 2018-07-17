@@ -9,30 +9,23 @@ Route::get('/', function () {
 Route::group(['prefix' => 'users'], function () {
 
     # Route untuk paparan senarai users
-    Route::get('/', function () {
-
-        $page_title = '<h1>Senarai Users</h1>';
-
-        $senarai_users = [
-            ['id' => '1', 'name' => 'Ali Baba', 'email' => 'ali@baba.com'],
-            ['id' => '2', 'name' => 'Ahmad Albab', 'email' => 'ahmad@albab.com'],
-            ['id' => '3', 'name' => 'Upin Ipin', 'email' => 'upin@ipin.com'],
-            ['id' => '4', 'name' => 'France Menang', 'email' => 'france@menang.com']
-        ];
-
-        return view('users.template_users', compact('page_title', 'senarai_users'));
-
-    })->name('users.index');
+    Route::get('/', 'UsersController@index')->name('users.index');
 
     # Route untuk paparan borang tambah user baru
-    Route::get('/add', function () {
-        return view('users.template_tambah');
-    })->name('users.create');
+    Route::get('/add', 'UsersController@create')->name('users.create');
 
-    # Route untuk edit user berdasarkan username (optional)
-    Route::get('/kemaskini/{id?}', function ($id = null) {
-        return 'ID anda adalah: '. $id;
-    })->where('id', '[0-9]+');
+    # Route untuk simpan rekod user baru
+    Route::post('/add', 'UsersController@store')->name('users.store');
+
+    # Route untuk edit user berdasarkan id
+    Route::get('/{id}/edit', 'UsersController@edit')->name('users.edit');
+
+    # Route untuk papar borang kemaskini rekod user berdasrakan id
+    Route::patch('/{id}/edit', 'UsersController@update')->name('users.update');
+
+    # Route untuk papar borang kemaskini rekod user berdasrakan id
+    Route::delete('/{id}', 'UsersController@destroy')->name('users.destroy');
+
 });
 
 
