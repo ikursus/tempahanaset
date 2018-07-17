@@ -40,7 +40,39 @@
         <td>{{ $user['email'] }}</td>
         <td>
             <a href="{{ route('users.edit', ['id' => $user['id']]) }}" class="btn btn-sm btn-info">EDIT</a>
-            <a href="#" class="btn btn-sm btn-danger">DELETE</a>
+
+            <!-- Button trigger modal delete -->
+            <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-delete-{{ $user['id'] }}">
+                Delete
+            </button>
+
+            <!-- Modal -->
+            <form action="{{ route('users.destroy', ['id' => $user['id']]) }}">
+                @csrf
+                @method('delete')
+            <div class="modal fade" id="modal-delete-{{ $user['id'] }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Delete Confirmation</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <p>Adakah anda bersetuju untuk menghapuskan rekod data ini?</p>
+                <ul>
+                    <li>ID: {{ $user['id'] }}</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Delete</button>
+            </div>
+            </div>
+            </div>
+            </div>
+
         </td>
     </tr>
     @endforeach
