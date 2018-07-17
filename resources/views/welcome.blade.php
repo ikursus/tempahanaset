@@ -12,10 +12,9 @@
 
                 <div class="card-body">
 
-                    <ul>
-                        <li><a href="{{ route('users.index') }}">Senarai Users</a></li>
-                        <li><a href="{{ route('assets.index') }}">Senarai Assets</a></li>
-                    </ul>
+                    <p>
+                        Sila login untuk akses.
+                    </p>
 
                 </div>
             </div>

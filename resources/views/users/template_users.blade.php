@@ -35,23 +35,23 @@
 
     @foreach( $senarai_users as $user )
     <tr>
-        <td>{{ $user['id'] }}</td>
-        <td>{{ $user['name'] }}</td>
-        <td>{{ $user['email'] }}</td>
+        <td>{{ $user->id }}</td>
+        <td>{{ $user->name }}</td>
+        <td>{{ $user->email }}</td>
         <td>
-            <a href="{{ route('users.edit', ['id' => $user['id']]) }}" class="btn btn-sm btn-info">EDIT</a>
+            <a href="{{ route('users.edit', ['id' => $user->id]) }}" class="btn btn-sm btn-info">EDIT</a>
 
             <!-- Button trigger modal delete -->
-            <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-delete-{{ $user['id'] }}">
+            <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-delete-{{ $user->id }}">
                 Delete
             </button>
 
             <!-- Modal -->
-            <form action="{{ route('users.destroy', ['id' => $user['id']]) }}" method="POST">
+            <form action="{{ route('users.destroy', ['id' => $user->id]) }}" method="POST">
                 @csrf
                 @method('delete')
 
-                <div class="modal fade" id="modal-delete-{{ $user['id'] }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="modal-delete-{{ $user->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
@@ -63,7 +63,7 @@
                 <div class="modal-body">
                     <p>Adakah anda bersetuju untuk menghapuskan rekod data ini?</p>
                     <ul>
-                        <li>ID: {{ $user['id'] }}</li>
+                        <li>ID: {{ $user->id }}</li>
                     </ul>
                 </div>
                 <div class="modal-footer">
@@ -82,6 +82,8 @@
     </tbody>
     </table>
     </div><!--/.table-responsive-->
+
+{!! $senarai_users->links() !!}
 
 </div>
 </div>

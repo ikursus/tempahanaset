@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class UsersController extends Controller
 {
@@ -11,12 +12,22 @@ class UsersController extends Controller
 
         $page_title = '<h1>Senarai Users</h1>';
 
-        $senarai_users = [
-            ['id' => '1', 'name' => 'Ali Baba', 'email' => 'ali@baba.com'],
-            ['id' => '2', 'name' => 'Ahmad Albab', 'email' => 'ahmad@albab.com'],
-            ['id' => '3', 'name' => 'Upin Ipin', 'email' => 'upin@ipin.com'],
-            ['id' => '4', 'name' => 'France Menang', 'email' => 'france@menang.com']
-        ];
+        // $senarai_users = [
+        //     ['id' => '1', 'name' => 'Ali Baba', 'email' => 'ali@baba.com'],
+        //     ['id' => '2', 'name' => 'Ahmad Albab', 'email' => 'ahmad@albab.com'],
+        //     ['id' => '3', 'name' => 'Upin Ipin', 'email' => 'upin@ipin.com'],
+        //     ['id' => '4', 'name' => 'France Menang', 'email' => 'france@menang.com']
+        // ];
+        # Panggil data users dari table users
+        # $senarai_users = DB::table('users')->get();
+        # Panggil data users dari table users dan limit 1 orang 1 page
+        # $senarai_users = DB::table('users')->paginate(1);
+        # Panggil data users dari table users dan limit 1 orang 1 page, sort id asc
+        $senarai_users = DB::table('users')
+        #->where('role', '=', 'admin')
+        ->select('id', 'name', 'email')
+        ->orderBy('id', 'desc')
+        ->paginate(1);
 
         return view('users.template_users', compact('page_title', 'senarai_users'));
 
