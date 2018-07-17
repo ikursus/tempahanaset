@@ -13,6 +13,8 @@
 </div>
 <div class="card-body">
 
+    @include('layouts.alerts')
+
 <form action="{{ route('users.update', ['id' => $id]) }}" method="POST">
 
 @csrf
@@ -45,6 +47,7 @@
 </div>
 
 <button type="submit" class="btn btn-primary">SAVE</button>
+<a href="{{ route('users.index') }}" class="btn btn-warning">BACK</a>
 
 </form>
 

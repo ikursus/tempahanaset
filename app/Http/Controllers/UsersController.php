@@ -47,7 +47,7 @@ class UsersController extends Controller
         # Dapatkan SEMUA data KECUALI yang dinyatakan
         $data = $request->except('name', 'email');
 
-        return $data;
+        return redirect()->route('users.index')->with('alert-success', 'Rekod telah berjaya disimpan.');
     }
 
     public function edit($id)
@@ -55,14 +55,19 @@ class UsersController extends Controller
         return view('users.template_edit', compact('id'));
     }
 
-    public function update($id)
+    public function update(Request $request, $id)
     {
-        return 'Data telah berjaya dikemaskini.';
+        $request->validate([
+            'name' => 'required|min:3',
+            'email' => 'required|email'
+        ]);
+
+        return redirect()->back()->with('alert-success', 'Rekod telah berjaya dikemaskini.');
     }
 
     public function destroy($id)
     {
-        return 'Data telah berjaya dihapuskan.';
+        return redirect()->route('users.index')->with('alert-success', 'Rekod telah berjaya dihapuskan.');
     }
 
 }

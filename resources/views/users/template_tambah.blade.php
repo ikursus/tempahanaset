@@ -48,6 +48,7 @@
 </div>
 
 <button type="submit" class="btn btn-primary">SAVE</button>
+<a href="{{ route('users.index') }}" class="btn btn-warning">BACK</a>
 
 </form>
 
