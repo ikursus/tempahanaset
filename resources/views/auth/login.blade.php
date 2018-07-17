@@ -69,9 +69,3 @@
     </div>
 </div>
 @endsection
-
-@section('script')
-<script>
-alert('Selamat Datang');
-</script>
-@endsection

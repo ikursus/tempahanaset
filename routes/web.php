@@ -6,7 +6,7 @@ Route::get('/', function () {
 })->name('homepage');
 
 # Berkongsi prefix users
-Route::group(['prefix' => 'users'], function () {
+Route::group(['prefix' => 'users', 'middleware' => 'auth'], function () {
 
     # Route untuk paparan senarai users
     Route::get('/', 'UsersController@index')->name('users.index');
@@ -29,7 +29,7 @@ Route::group(['prefix' => 'users'], function () {
 });
 
 # Berkongsi prefix assets
-Route::group(['prefix' => 'assets'], function () {
+Route::group(['prefix' => 'assets', 'middleware' => 'auth'], function () {
 
     # Route untuk paparan senarai assets
     Route::get('/', 'AssetsController@index')->name('assets.index');
