@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use App\Models\User;
 
 class UsersController extends Controller
 {
@@ -98,6 +99,14 @@ class UsersController extends Controller
         ->update($data);
 
         return redirect()->back()->with('alert-success', 'Rekod telah berjaya dikemaskini.');
+    }
+
+    public function show($id)
+    {
+        # Panggil data user berdasarkan ID
+        $user = User::find($id);
+        # Bagi respon papar template edit dan attach sekali $variable $user
+        return view('users.template_show', compact('user'));
     }
 
     public function destroy($id)

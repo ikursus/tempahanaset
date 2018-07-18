@@ -39,6 +39,7 @@
         <td>{{ $user->name }}</td>
         <td>{{ $user->email }}</td>
         <td>
+            <a href="{{ route('users.show', ['id' => $user->id]) }}" class="btn btn-sm btn-primary">SHOW</a>
             <a href="{{ route('users.edit', ['id' => $user->id]) }}" class="btn btn-sm btn-info">EDIT</a>
 
             <!-- Button trigger modal delete -->

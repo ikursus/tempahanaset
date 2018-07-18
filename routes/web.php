@@ -23,6 +23,9 @@ Route::group(['prefix' => 'users', 'middleware' => 'auth'], function () {
     # Route untuk papar borang kemaskini rekod user berdasrakan id
     Route::patch('/{id}/edit', 'UsersController@update')->name('users.update');
 
+    # Route untuk edit user berdasarkan id
+    Route::get('/{id}/show', 'UsersController@show')->name('users.show');
+
     # Route untuk papar borang kemaskini rekod user berdasrakan id
     Route::delete('/{id}', 'UsersController@destroy')->name('users.destroy');
 
