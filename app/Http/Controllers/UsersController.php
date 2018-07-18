@@ -63,7 +63,10 @@ class UsersController extends Controller
 
     public function edit($id)
     {
-        return view('users.template_edit', compact('id'));
+        # Panggil data user berdasarkan ID
+        $user = DB::table('users')->where('id', '=', $id)->first();
+        # Bagi respon papar template edit dan attach sekali $variable $user
+        return view('users.template_edit', compact('user'));
     }
 
     public function update(Request $request, $id)
