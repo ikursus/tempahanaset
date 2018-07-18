@@ -102,7 +102,7 @@ class UsersController extends Controller
 
     public function destroy($id)
     {
-        # Panggil data user berdasarkan ID
+        # Panggil data user berdasarkan ID dan hapuskan ia
         DB::table('users')->where('id', '=', $id)->delete();
         # Bagi respon redirect ke halaman senarai users
         return redirect()->route('users.index')->with('alert-success', 'Rekod telah berjaya dihapuskan.');
