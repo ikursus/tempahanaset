@@ -51,6 +51,29 @@ Route::group(['prefix' => 'assets', 'middleware' => 'auth'], function () {
 
 });
 
+# Berkongsi prefix tempahan
+Route::group(['prefix' => 'tempahan', 'middleware' => 'auth'], function () {
+
+    # Route untuk paparan senarai tempahan
+    Route::get('/', 'TempahanController@index')->name('tempahan.index');
+
+    # Route untuk paparan borang tambah tempahan baru
+    Route::get('/add', 'TempahanController@create')->name('tempahan.create');
+
+    # Route untuk simpan rekod tempahan baru
+    Route::post('/add', 'TempahanController@store')->name('tempahan.store');
+
+    # Route untuk edit tempahan berdasarkan id
+    Route::get('/{id}/edit', 'TempahanController@edit')->name('tempahan.edit');
+
+    # Route untuk papar borang kemaskini rekod tempahan berdasarkan id
+    Route::patch('/{id}/edit', 'TempahanController@update')->name('tempahan.update');
+
+    # Route untuk papar borang kemaskini rekod tempahan berdasarkan id
+    Route::delete('/{id}', 'TempahanController@destroy')->name('tempahan.destroy');
+
+});
+
 
 Auth::routes();
 
