@@ -36,6 +36,11 @@
 </div>
 
 <div class="form-group">
+    <label>NO. KP</label>
+    <input type="text" name="ic" class="form-control" value="{{ $user->ic }}">
+</div>
+
+<div class="form-group">
     <label>ADDRESS</label>
     <textarea class="form-control">{{ $user->address }}</textarea>
 </div>
@@ -47,7 +52,7 @@
 
 <div class="form-group">
     <label>ROLE</label>
-    <select name="phone" class="form-control">
+    <select name="role" class="form-control">
         <option value="admin" {{ $user->role == 'admin' ? 'selected=selected' : '' }}>Admin</option>
         <option value="user" {{ $user->role == 'user' ? 'selected=selected' : '' }}>User</option>
     </select>

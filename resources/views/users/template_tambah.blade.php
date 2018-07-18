@@ -37,14 +37,27 @@
 </div>
 
 <div class="form-group">
+    <label>NO. KP</label>
+    <input type="text" name="ic" class="form-control">
+</div>
+
+<div class="form-group">
     <label>ADDRESS</label>
-    <textarea class="form-control">
+    <textarea class="form-control" name="address">
     </textarea>
 </div>
 
 <div class="form-group">
     <label>PASSWORD</label>
     <input type="password" name="password" class="form-control">
+</div>
+
+<div class="form-group">
+    <label>ROLE</label>
+    <select name="role" class="form-control">
+        <option value="admin">Admin</option>
+        <option value="user">User</option>
+    </select>
 </div>
 
 <button type="submit" class="btn btn-primary">SAVE</button>
