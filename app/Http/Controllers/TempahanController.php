@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Asset;
 use App\Models\Tempahan;
+use DB;
 
 class TempahanController extends Controller
 {
@@ -20,6 +21,14 @@ class TempahanController extends Controller
         # Dapatkan rekod senarai tempahan
         $senarai_tempahan = Tempahan::paginate(10);
         # Beri respon papar template_index
+
+        # Join Table menerusi Query Builder
+        // $senarai_tempahan = DB::table('tempahan')
+        // ->join('users', 'tempahan.user_id', '=', 'users.id')
+        // ->join('assets', 'tempahan.asset_id', '=', 'assets.id')
+        // ->select('tempahan.*', 'users.name as nama_pengguna', 'assets.nama as nama_asset')
+        // ->paginate(10);
+
         return view('tempahan/template_index', compact('senarai_tempahan'));
     }
 

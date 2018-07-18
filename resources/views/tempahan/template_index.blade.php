@@ -42,8 +42,8 @@
 
         <tr>
             <td>{{ $tempahan->id }}</td>
-            <td>{{ $tempahan->user_id }}</td>
-            <td>{{ $tempahan->asset_id }}</td>
+            <td>{{ $tempahan->dataPengguna->name }}</td>
+            <td>{{ $tempahan->dataAsset->nama }}</td>
             <td>{{ $tempahan->tarikh_pinjam }}</td>
             <td>{{ $tempahan->tarikh_pulang }}</td>
             <td>{{ $tempahan->nota }}</td>

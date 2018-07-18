@@ -17,4 +17,14 @@ class Tempahan extends Model
         'tarikh_pulang',
         'nota'
     ];
+
+    public function dataPengguna()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function dataAsset()
+    {
+        return $this->belongsTo(Asset::class, 'asset_id', 'id');
+    }
 }
