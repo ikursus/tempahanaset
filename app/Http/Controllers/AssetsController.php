@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class AssetsController extends Controller
 {
@@ -13,11 +14,7 @@ class AssetsController extends Controller
      */
     public function index()
     {
-        $senarai_assets = [
-            ['id' => '1', 'nama' => 'LAPTOP DELL', 'barcode' => 'ABC123', 'tarikh_beli' => '2018-01-01', 'harga_pasaran' => '5000.00'],
-            ['id' => '2', 'nama' => 'PROJECTOR HITACHI', 'barcode' => 'CAD123', 'tarikh_beli' => '2018-01-01', 'harga_pasaran' => '3000.00'],
-            ['id' => '3', 'nama' => 'KAMERA CANON', 'barcode' => 'ABC123', 'tarikh_beli' => '2018-01-01', 'harga_pasaran' => '2000.00']
-        ];
+        $senarai_assets = DB::table('assets')->get();
 
         return view('assets/template_index', compact('senarai_assets'));
     }
@@ -45,6 +42,11 @@ class AssetsController extends Controller
             'barcode' => 'required'
         ]);
 
+        # Dapatkan data dari borang
+        $data = $request->except('_token');
+        # Simpan data ke dalam table assets
+        DB::table('assets')->insert($data);
+
         return redirect()->route('assets.index')->with('alert-success', 'Rekod telah berjaya ditambah.');
     }
 
@@ -67,7 +69,10 @@ class AssetsController extends Controller
      */
     public function edit($id)
     {
-        return view('assets/template_edit', compact('id'));
+        # Dapatkan data berdasarkan ID
+        $asset = DB::table('assets')->where('id', $id)->first();
+
+        return view('assets/template_edit', compact('asset'));
     }
 
     /**
@@ -84,6 +89,13 @@ class AssetsController extends Controller
             'barcode' => 'required'
         ]);
 
+        # Dapatkan data dari borang
+        $data = $request->except('_token', '_method');
+        # Simpan data ke dalam table assets
+        DB::table('assets')
+        ->where('id', $id)
+        ->update($data);
+
         return redirect()->route('assets.index')->with('alert-success', 'Rekod telah berjaya dikemaskini.');
     }
 
@@ -95,6 +107,11 @@ class AssetsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        # Dapatkan rekod data dan hapuskan ia
+        DB::table('assets')
+        ->where('id', $id)
+        ->delete();
+
+        return redirect()->route('assets.index')->with('alert-success', 'Rekod telah berjaya dihapuskan.');
     }
 }

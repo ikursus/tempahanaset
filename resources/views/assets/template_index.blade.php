@@ -40,25 +40,25 @@
         @foreach ( $senarai_assets as $asset )
 
         <tr>
-            <td></td>
-            <td>{{ $asset['nama'] }}</td>
-            <td>{{ $asset['barcode'] }}</td>
-            <td>{{ $asset['tarikh_beli'] }}</td>
-            <td>{{ $asset['harga_pasaran'] }}</td>
+            <td>{{ $asset->id }}</td>
+            <td>{{ $asset->nama }}</td>
+            <td>{{ $asset->barcode }}</td>
+            <td>{{ $asset->tarikh_beli }}</td>
+            <td>{{ $asset->harga_pasaran }}</td>
             <td>
-                <a href="{{ route('assets.edit', ['id' => $asset['id']]) }}" class="btn btn-sm btn-info">Edit</a>
+                <a href="{{ route('assets.edit', ['id' => $asset->id]) }}" class="btn btn-sm btn-info">Edit</a>
 
                 <!-- Button trigger modal delete -->
-                <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-delete-{{ $asset['id'] }}">
+                <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-delete-{{ $asset->id }}">
                     Delete
                 </button>
 
                 <!-- Modal -->
-                <form action="{{ route('users.destroy', ['id' => $asset['id']]) }}" method="POST">
+                <form action="{{ route('assets.destroy', ['id' => $asset->id]) }}" method="POST">
                     @csrf
                     @method('delete')
 
-                    <div class="modal fade" id="modal-delete-{{ $asset['id'] }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="modal-delete-{{ $asset->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                     <div class="modal-content">
                     <div class="modal-header">
@@ -70,7 +70,7 @@
                     <div class="modal-body">
                         <p>Adakah anda bersetuju untuk menghapuskan rekod data ini?</p>
                         <ul>
-                            <li>ID: {{ $asset['id'] }}</li>
+                            <li>ID: {{ $asset->id }}</li>
                         </ul>
                     </div>
                     <div class="modal-footer">
