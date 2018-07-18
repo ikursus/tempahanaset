@@ -113,7 +113,7 @@ class TempahanController extends Controller
 
         # Dapatkan data tempahan berdasarkan id dan update
         $tempahan = Tempahan::find($id);
-        $tempahan->udpate($data);
+        $tempahan->update($data);
 
         # Beri respon kembali ke senarai tempahan
         return redirect()->route('tempahan.index')->with('alert-success', 'Rekod telah berjaya dikemaskini');

@@ -18,6 +18,7 @@
 <form action="{{ route('tempahan.update', ['id' => $tempahan->id]) }}" method="post">
 
 @csrf
+@method('patch')
 
 <div class="form-group">
     <label>PENGGUNA</label>
