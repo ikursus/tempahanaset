@@ -60,7 +60,8 @@ $(function() {
         columns: [
             { data: 'id', name: 'id' },
             { data: 'name', name: 'name' },
-            { data: 'email', name: 'email' }
+            { data: 'email', name: 'email' },
+            { data: 'tindakan', name: 'tindakan'}
         ]
     });
 });
