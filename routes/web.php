@@ -11,6 +11,9 @@ Route::group(['prefix' => 'users', 'middleware' => 'auth'], function () {
     # Route untuk paparan senarai users
     Route::get('/', 'UsersController@index')->name('users.index');
 
+    # Route untuk datatables
+    Route::get('/datatables', 'UsersController@datatables')->name('users.datatables');
+
     # Route untuk paparan borang tambah user baru
     Route::get('/add', 'UsersController@create')->name('users.create');
 

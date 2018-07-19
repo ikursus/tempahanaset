@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Models\User;
+use DataTables;
 
 class UsersController extends Controller
 {
@@ -29,11 +30,26 @@ class UsersController extends Controller
         // ->select('id', 'name', 'email')
         // ->orderBy('id', 'desc')
         // ->paginate(5);
-        $senarai_users = User::paginate(5);
+        # $senarai_users = User::paginate(5);
 
-        return view('users.template_users', compact('page_title', 'senarai_users'));
+        return view('users.template_users', compact('page_title'));
 
     }
+
+    /**
+     * Process datatables ajax request.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function datatables()
+    {
+        # Dapatkan rekod data users dari table users
+        $query = User::select('id', 'name', 'email');
+        # Beri respon datatables
+        return Datatables::of($query)->make(true);
+    }
+
+
 
     public function create()
     {
