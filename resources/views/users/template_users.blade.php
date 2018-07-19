@@ -61,7 +61,7 @@ $(function() {
             { data: 'id', name: 'id' },
             { data: 'name', name: 'name' },
             { data: 'email', name: 'email' },
-            { data: 'tindakan', name: 'tindakan'}
+            { data: 'tindakan', name: 'tindakan', orderable: false, searchable: false }
         ]
     });
 });

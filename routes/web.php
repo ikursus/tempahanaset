@@ -66,6 +66,9 @@ Route::group(['prefix' => 'tempahan', 'middleware' => 'auth'], function () {
     # Route untuk paparan senarai tempahan
     Route::get('/', 'TempahanController@index')->name('tempahan.index');
 
+    # Route untuk datatables
+    Route::get('/datatables', 'TempahanController@datatables')->name('tempahan.datatables');
+
     # Route untuk paparan borang tambah tempahan baru
     Route::get('/add', 'TempahanController@create')->name('tempahan.create');
 
