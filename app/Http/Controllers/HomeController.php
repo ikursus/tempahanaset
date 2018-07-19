@@ -23,6 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home', compact('auth'));
+        return view('themes/'.env('APP_THEME').'/home', compact('auth'));
     }
 }
