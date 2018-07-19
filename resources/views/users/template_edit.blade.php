@@ -15,53 +15,11 @@
 
     @include('layouts.alerts')
 
-<form action="{{ route('users.update', ['id' => $user->id]) }}" method="POST">
-
-@csrf
+{!! Form::model($user, ['route' => ['users.update', $user->id] ]) !!}
 @method('patch')
+@include('users/template_borang')
+{!! Form::close() !!}
 
-<div class="form-group">
-    <label>NAMA</label>
-    <input type="text" name="name" class="form-control" value="{{ $user->name }}">
-</div>
-
-<div class="form-group">
-    <label>EMEL</label>
-    <input type="email" name="email" class="form-control" value="{{ $user->email }}">
-</div>
-
-<div class="form-group">
-    <label>PHONE</label>
-    <input type="text" name="phone" class="form-control" value="{{ $user->phone }}">
-</div>
-
-<div class="form-group">
-    <label>NO. KP</label>
-    <input type="text" name="ic" class="form-control" value="{{ $user->ic }}">
-</div>
-
-<div class="form-group">
-    <label>ADDRESS</label>
-    <textarea class="form-control">{{ $user->address }}</textarea>
-</div>
-
-<div class="form-group">
-    <label>PASSWORD</label>
-    <input type="password" name="password" class="form-control">
-</div>
-
-<div class="form-group">
-    <label>ROLE</label>
-    <select name="role" class="form-control">
-        <option value="admin" {{ $user->role == 'admin' ? 'selected=selected' : '' }}>Admin</option>
-        <option value="user" {{ $user->role == 'user' ? 'selected=selected' : '' }}>User</option>
-    </select>
-</div>
-
-<button type="submit" class="btn btn-primary">SAVE</button>
-<a href="{{ route('users.index') }}" class="btn btn-warning">BACK</a>
-
-</form>
 
 
 </div>

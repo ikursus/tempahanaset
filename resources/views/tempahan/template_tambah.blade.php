@@ -15,46 +15,9 @@
 
 @include('layouts.alerts')
 
-<form action="{{ route('tempahan.store') }}" method="post">
-
-@csrf
-
-<div class="form-group">
-    <label>PENGGUNA</label>
-    <select name="user_id" class="form-control">
-        @foreach( $select_users as $user )
-        <option value="{{ $user->id }}">{{ $user->name }}</option>
-        @endforeach
-    </select>
-</div>
-
-<div class="form-group">
-    <label>ASSET</label>
-    <select name="asset_id" class="form-control">
-        @foreach( $select_assets as $asset )
-        <option value="{{ $asset->id }}">{{ $asset->nama }}</option>
-        @endforeach
-    </select>
-</div>
-
-<div class="form-group">
-    <label>TARIKH PINJAM</label>
-    <input type="date" name="tarikh_pinjam" class="form-control">
-</div>
-
-<div class="form-group">
-    <label>TARIKH PULANG</label>
-    <input type="date" name="tarikh_pulang" class="form-control">
-</div>
-
-<div class="form-group">
-    <label>NOTA</label>
-    <textarea name="nota" class="form-control"></textarea>
-</div>
-
-<button type="submit" class="btn btn-primary">SAVE</button>
-<a href="{{ route('tempahan.index') }}" class="btn btn-warning">BACK</a>
-</form>
+{!! Form::open(['route' => 'tempahan.store']) !!}
+@include('tempahan/template_borang')
+{!! Form::close() !!}
 
 
 </div>

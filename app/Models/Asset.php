@@ -18,4 +18,12 @@ class Asset extends Model
         'jenis',
         'tarikh_beli'
     ];
+
+    # Hubungan table assets dan tablet tempahan
+    public function showTempahan()
+    {
+        # has many relations dan sort by desc
+        return $this->hasMany(Tempahan::class, 'asset_id')
+        ->orderBy('created_at', 'desc');
+    }
 }

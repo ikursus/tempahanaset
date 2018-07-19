@@ -27,4 +27,24 @@ class Tempahan extends Model
     {
         return $this->belongsTo(Asset::class, 'asset_id', 'id');
     }
+
+
+    /**
+     * Set the nota content.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setNotaAttribute($value)
+    {
+        $this->attributes['nota'] = (trim($value) !== '' ? $value : ' ');
+    }
+
+
+
+
+
+
+
+
 }

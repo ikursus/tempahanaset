@@ -23,7 +23,7 @@ Route::group(['prefix' => 'users', 'middleware' => 'auth'], function () {
     # Route untuk papar borang kemaskini rekod user berdasrakan id
     Route::patch('/{id}/edit', 'UsersController@update')->name('users.update');
 
-    # Route untuk edit user berdasarkan id
+    # Route untuk paparkan rekod senarai tempahan user berdasarkan id user
     Route::get('/{id}/show', 'UsersController@show')->name('users.show');
 
     # Route untuk papar borang kemaskini rekod user berdasrakan id
@@ -42,6 +42,9 @@ Route::group(['prefix' => 'assets', 'middleware' => 'auth'], function () {
 
     # Route untuk simpan rekod assets baru
     Route::post('/add', 'AssetsController@store')->name('assets.store');
+
+    # Route untuk papar senarai user yang menggunakan asset berdasarkan id asset
+    Route::get('/{id}/show', 'AssetsController@show')->name('assets.show');
 
     # Route untuk edit assets berdasarkan id
     Route::get('/{id}/edit', 'AssetsController@edit')->name('assets.edit');

@@ -20,7 +20,7 @@ class User extends Authenticatable
         'password',
         'role',
         'ic',
-        'alamat',
+        'address',
         'phone'
     ];
 
@@ -33,8 +33,20 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function showAssets()
+    # Relationship table users dan tempahan (user_id)
+    public function showTempahan()
     {
         return $this->hasMany(Tempahan::class, 'user_id');
+    }
+
+    /**
+     * Get the user's name. dan besarkan semua huruf
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getNameAttribute($value)
+    {
+        return strtoupper($value);
     }
 }

@@ -24,11 +24,12 @@ class UsersController extends Controller
         # Panggil data users dari table users dan limit 1 orang 1 page
         # $senarai_users = DB::table('users')->paginate(1);
         # Panggil data users dari table users dan limit 1 orang 1 page, sort id asc
-        $senarai_users = DB::table('users')
-        #->where('role', '=', 'admin')
-        ->select('id', 'name', 'email')
-        ->orderBy('id', 'desc')
-        ->paginate(5);
+        // $senarai_users = DB::table('users')
+        // #->where('role', '=', 'admin')
+        // ->select('id', 'name', 'email')
+        // ->orderBy('id', 'desc')
+        // ->paginate(5);
+        $senarai_users = User::paginate(5);
 
         return view('users.template_users', compact('page_title', 'senarai_users'));
 
@@ -71,7 +72,8 @@ class UsersController extends Controller
     public function edit($id)
     {
         # Panggil data user berdasarkan ID
-        $user = DB::table('users')->where('id', '=', $id)->first();
+        # $user = DB::table('users')->where('id', '=', $id)->first();
+        $user = User::find($id);
         # Bagi respon papar template edit dan attach sekali $variable $user
         return view('users.template_edit', compact('user'));
     }
@@ -86,7 +88,7 @@ class UsersController extends Controller
         ]);
 
         # Dapatkan nama dan emel sahaja
-        $data = $request->only('name', 'email', 'phone', 'role', 'address', 'ic');
+        $data = $request->except('password');
         # Sekiranya wujud data pada input password,
         # Attach $data password untuk diencrypt
         if ( !empty($request->input('password')) )
@@ -94,9 +96,8 @@ class UsersController extends Controller
             $data['password'] = bcrypt($request->input('password'));
         }
         # Simpan data ke dalam Table Users
-        DB::table('users')
-        ->where('id', '=', $id)
-        ->update($data);
+        $user = User::find($id);
+        $user->update($data);
 
         return redirect()->back()->with('alert-success', 'Rekod telah berjaya dikemaskini.');
     }
@@ -105,6 +106,9 @@ class UsersController extends Controller
     {
         # Panggil data user berdasarkan ID
         $user = User::find($id);
+        # Akses direct ke table tempahan
+        # $tempahan = Tempahan::where('user_id', '=', $id)->get();
+
         # Bagi respon papar template edit dan attach sekali $variable $user
         return view('users.template_show', compact('user'));
     }

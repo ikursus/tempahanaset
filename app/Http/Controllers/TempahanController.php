@@ -40,9 +40,11 @@ class TempahanController extends Controller
     public function create()
     {
         # Dapatkan data drop down senarai assets
-        $select_users = User::select('id', 'name')->get();
+        # $select_users = User::select('id', 'name')->get();
+        $select_users = User::pluck('name', 'id');
         # Dapatkan data drop down senarai assets
-        $select_assets = Asset::select('id', 'nama')->get();
+        # $select_assets = Asset::select('id', 'nama')->get();
+        $select_assets = Asset::pluck('nama', 'id');
         # Beri respon papar template borang tempahan
         return view('tempahan/template_tambah', compact('select_assets', 'select_users'));
     }

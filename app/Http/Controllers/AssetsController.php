@@ -64,7 +64,10 @@ class AssetsController extends Controller
      */
     public function show($id)
     {
-        //
+        # Dapatkan maklumat asset berdasrakan ID
+        $asset = Asset::find($id);
+        # Beri respon paparkan template_show.blade.php
+        return view('assets/template_show', compact('asset'));
     }
 
     /**

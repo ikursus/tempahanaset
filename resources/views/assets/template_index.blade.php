@@ -46,6 +46,8 @@
             <td>{{ $asset->tarikh_beli }}</td>
             <td>{{ $asset->harga_pasaran }}</td>
             <td>
+                <a href="{{ route('assets.show', ['id' => $asset->id]) }}" class="btn btn-sm btn-primary">Show</a>
+
                 <a href="{{ route('assets.edit', ['id' => $asset->id]) }}" class="btn btn-sm btn-info">Edit</a>
 
                 <!-- Button trigger modal delete -->

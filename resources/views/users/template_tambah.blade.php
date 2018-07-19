@@ -15,55 +15,9 @@
 
 @include('layouts.alerts')
 
-<form action="{{ route('users.store') }}" method="post">
-
-@csrf
-
-<div class="form-group">
-    <label>NAMA</label>
-    <input type="text" name="name" class="form-control">
-    {!! $errors->first('name', '<span style="color:red;">:message</span>') !!}
-</div>
-
-<div class="form-group">
-    <label>EMEL</label>
-    <input type="email" name="email" class="form-control">
-    {!! $errors->first('email') !!}
-</div>
-
-<div class="form-group">
-    <label>PHONE</label>
-    <input type="text" name="phone" class="form-control">
-</div>
-
-<div class="form-group">
-    <label>NO. KP</label>
-    <input type="text" name="ic" class="form-control">
-</div>
-
-<div class="form-group">
-    <label>ADDRESS</label>
-    <textarea class="form-control" name="address">
-    </textarea>
-</div>
-
-<div class="form-group">
-    <label>PASSWORD</label>
-    <input type="password" name="password" class="form-control">
-</div>
-
-<div class="form-group">
-    <label>ROLE</label>
-    <select name="role" class="form-control">
-        <option value="admin">Admin</option>
-        <option value="user">User</option>
-    </select>
-</div>
-
-<button type="submit" class="btn btn-primary">SAVE</button>
-<a href="{{ route('users.index') }}" class="btn btn-warning">BACK</a>
-
-</form>
+{!! Form::open(['route' => 'users.store']) !!}
+@include('users/template_borang')
+{!! Form::close() !!}
 
 
 </div>
