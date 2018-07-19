@@ -94,9 +94,11 @@ class TempahanController extends Controller
     public function edit($id)
     {
         # Dapatkan data drop down senarai assets
-        $select_users = User::select('id', 'name')->get();
+        # $select_users = User::select('id', 'name')->get();
+        $select_users = User::pluck('name', 'id');
         # Dapatkan data drop down senarai assets
-        $select_assets = Asset::select('id', 'nama')->get();
+        # $select_assets = Asset::select('id', 'nama')->get();
+        $select_assets = Asset::pluck('nama', 'id');
         # Dapatkan data tempahan berdasarkan id
         $tempahan = Tempahan::find($id);
         # Beri respon papar template borang tempahan
